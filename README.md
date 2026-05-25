@@ -36,17 +36,6 @@ python main.py
 
 If you use a virtual environment locally, create it on your own machine and do not upload it.
 
-## What Was Removed
-
-- `.venv/` - local virtual environment, machine-specific and too large for GitHub.
-- `build/` and `dist/` - generated build artifacts.
-- `__pycache__/` and `*.pyc` - Python cache files.
-- `alerts_log.txt`, `session_history_export.csv` - generated runtime exports.
-- `sessions_log.json` and `student_accounts.json` contents - replaced with safe empty files.
-- `gmail_config.py` secrets - replaced with blank placeholders.
-- `sessions_log.json.lock` - transient lock file.
-- `build_exe.py`, `gui/ztna_gui_fixed.py`, and the empty `python` file - unnecessary leftovers for GitHub upload.
-
 # ZTNA Framework - GUI Application
 
 ## Overview
@@ -96,7 +85,7 @@ AI-Based Adaptive Hybrid Zero Trust Network Access (ZTNA) Framework with Tkinter
 
 1. Navigate to project folder:
 ```bash
-cd "D:\Air universty\4th Semester\Projects\NS --- Project\co pilot project"
+D:\Air universty\4th Semester\Projects\NS --- Project\Git upload.
 ```
 
 2. Create virtual environment (optional but recommended):
