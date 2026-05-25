@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="refresh" content="10">
+	<title>ZTNA Dashboard</title>
+	<style>
+		body { font-family: Arial, sans-serif; margin: 20px; background: #101421; color: #e8ebf5; }
+		.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+		.card { background: #1b2236; border: 1px solid #2a3554; border-radius: 8px; padding: 14px; }
+		.card h3 { margin: 0 0 8px 0; font-size: 14px; color: #9eb0e8; }
+		.value { font-size: 24px; font-weight: bold; }
+		table { width: 100%; border-collapse: collapse; background: #1b2236; }
+		th, td { border: 1px solid #2a3554; padding: 8px; text-align: left; font-size: 13px; }
+		th { background: #243154; }
+		.btn { color: #fff; background: #c0392b; padding: 6px 10px; border-radius: 4px; text-decoration: none; }
+		.alerts { margin-top: 18px; background: #1b2236; border: 1px solid #2a3554; border-radius: 8px; padding: 12px; }
+		.alerts li { margin-bottom: 6px; font-size: 13px; }
+		.status-active { color: #7dff9b; }
+		.status-blocked { color: #ff9d9d; }
+		.status-ended { color: #bdbdbd; }
+	</style>
+</head>
+<body>
+	<h1>ZTNA Security Dashboard</h1>
+	<p>Auto-refresh every 10 seconds.</p>
+
+	<div class="grid">
+		<div class="card">
+			<h3>Total Sessions</h3>
+			<div class="value">{{ total_count }}</div>
+		</div>
+		<div class="card">
+			<h3>Active Sessions</h3>
+			<div class="value">{{ active_count }}</div>
+		</div>
+		<div class="card">
+			<h3>Blocked Sessions</h3>
+			<div class="value">{{ blocked_count }}</div>
+		</div>
+	</div>
+
+	<h2>Sessions</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Session ID</th>
+				<th>User</th>
+				<th>Role</th>
+				<th>IP</th>
+				<th>Risk</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for s in sessions %}
+			<tr>
+				<td>{{ s.session_id }}</td>
+				<td>{{ s.username }}</td>
+				<td>{{ s.role }}</td>
+				<td>{{ s.ip }}</td>
+				<td>{{ s.risk_level }} ({{ s.risk_score }})</td>
+				<td class="status-{{ s.status|lower }}">{{ s.status }}</td>
+				<td>
+					{% if s.status|lower == 'active' %}
+					<a class="btn" href="{{ url_for('block_session', session_id=s.session_id) }}">Block</a>
+					{% else %}
+					-
+					{% endif %}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<div class="alerts">
+		<h2>Alerts ({{ alerts|length }})</h2>
+		<ul>
+			{% for alert in alerts[-20:] %}
+			<li>{{ alert }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+</body>
+</html>

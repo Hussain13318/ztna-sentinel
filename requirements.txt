@@ -1,0 +1,12 @@
+
+
+
+Flask
+scapy
+pyotp
+langchain
+langchain-community
+requests
+psutil
+pandas
+winsdk

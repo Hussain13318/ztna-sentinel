@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+build/
+dist/
+alerts_log.txt
+sessions_log.json.lock
+session_history_export.csv
+student_accounts.json
+sessions_log.json
+gmail_config.py
+.DS_Store
