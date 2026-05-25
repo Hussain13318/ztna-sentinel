@@ -1,14 +1,39 @@
+# Virtual environments
 .venv/
+venv/
+env/
+ENV/
+
+# Python bytecode and caches
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[codz]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+
+# Build and distribution artifacts
 build/
 dist/
+*.egg-info/
+*.egg
+MANIFEST
+
+# Project runtime data and secrets
 alerts_log.txt
+sessions_log.json
 sessions_log.json.lock
 session_history_export.csv
 student_accounts.json
-sessions_log.json
 gmail_config.py
+*.log
+
+# Common OS and editor files
 .DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary helper files
+tempCodeRunnerFile.py
